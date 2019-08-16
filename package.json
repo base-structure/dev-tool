@@ -1,0 +1,32 @@
+{
+  "name": "gen-html-page",
+  "version": "1.0.0",
+  "description": "生成HTML及样式文件",
+  "main": "index.js",
+  "scripts": {
+    "watch": "mocha --watch tests/",
+    "test": "mocha --reporter spec --timeout 2000 --recursive tests/",
+    "test-cov": "istanbul cover ./node_modules/mocha/bin/_mocha -- -t 2000 --recursive  -R spec tests/",
+    "test-html": "mocha --reporter mochawesome tests/"
+  },
+  "bin": {
+    "gen-test": "./bin/test.js",
+    "test-sh": "./bin/test.sh"
+  },
+  "keywords": [
+    "read",
+    "write"
+  ],
+  "author": "Nick Na",
+  "license": "MIT",
+  "dependencies": {
+    "es6-promise": "^3.0.2"
+  },
+  "devDependencies": {
+    "art-template": "^4.13.2",
+    "chai": "^3.4.1",
+    "istanbul": "^0.4.1",
+    "mocha": "^2.3.4",
+    "mochawesome": "^1.2.1"
+  }
+}
