@@ -10,8 +10,8 @@
     "test-html": "mocha --reporter mochawesome tests/"
   },
   "bin": {
-    "gen-test": "./bin/test.js",
-    "test-sh": "./bin/test.sh"
+    "gen": "./bin/gen.js",
+    "gen-sh": "./bin/gen.sh"
   },
   "keywords": [
     "read",

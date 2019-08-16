@@ -3,12 +3,9 @@
 var path = require('path');
 var program = require('commander');
 var colors = require( "colors");
+var layout = require( "../lib/layout");
 
-const templatePath = path.resolve(__dirname, './template');
 var targetPath = process.cwd();
-if (program.target) {
-    targetPath = path.resolve(process.cwd(), program.target);
-}
 
 program
   .version('1.0.0')
@@ -16,12 +13,11 @@ program
   .option('-f, --filename [value]', 'Target filename')
 
 program
-    .command('layout <name>')
+    .command('layout <filename>')
     .option('--type [value]', 'Generate layout type')
-    .option('-f, --filename [value]', 'Target filename')
     .description('Generate HTML amd css')
-    .action(function(name, options){
-        console.log('Create %s', name, options.filename);
+    .action(function(filename, options){
+        layout.gen(filename);
     });
 
 program
