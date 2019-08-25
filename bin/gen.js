@@ -11,18 +11,21 @@ program
   .version('1.0.0')
 
 program
-    .command('html <name>')
+    .command('html')
     .description('Generate HTML')
-    .action(function(name, options){
-        genrate('html', name, options);
+    .option('-f, --filename <filename>', '文件名')
+    .option('-t, --type <type>', '类型')
+    .action(function(options){
+        genrate('html', options);
     });
 
 program
-    .command('mongo <name>')
+    .command('mongo')
     .description('Generate mongo query file')
+    .option('-f, --filename <filename>', '文件名')
     .option('-t, --type <type>', '类型')
-    .action(function(name, options){
-        genrate('mongo', name, options);
+    .action(function(options){
+        genrate('mongo', options);
     });
 
 program.parse(process.argv);
