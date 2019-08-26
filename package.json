@@ -4,6 +4,8 @@
   "description": "开发辅助工具: 生成文件",
   "main": "index.js",
   "scripts": {
+    "test": "mocha --recursive",
+    "test-tap": "mocha --recursive --reporter tap"
   },
   "bin": {
     "gen": "./bin/gen.js",
@@ -17,10 +19,13 @@
   "license": "MIT",
   "dependencies": {
     "commander": "^3.0.0",
-    "es6-promise": "^3.0.2"
+    "es6-promise": "^3.0.2",
+    "sinon": "^7.4.1"
   },
   "devDependencies": {
     "art-template": "^4.13.2",
-    "colors": "^1.3.3"
+    "chai": "^4.2.0",
+    "colors": "^1.3.3",
+    "mocha": "^6.2.0"
   }
 }
