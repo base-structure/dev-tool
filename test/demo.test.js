@@ -1,12 +1,13 @@
-var demo = require('./demo.js');
 var chai = require('chai');
-var assert = chai.assert;
 var expect = chai.expect;
 
+var foo;
+
 describe('test suite', function(){
-    describe('Sub test suite', function(){
-        it('test case', function(){
-            expect(demo.add(1, 1)).to.be.equal(2);
-        })
-    });
+    it('test case', function(){
+        expect(foo).to.not.exist;
+        expect(foo).to.undefined;
+        expect(foo).to.not.null;
+        expect([]).to.be.empty;
+    })
 });

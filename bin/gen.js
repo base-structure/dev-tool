@@ -11,16 +11,17 @@ var targetPath = process.cwd()
 program
   .version('1.0.0')
 
-Object.keys(config.commands).forEach(item => {
-    let types = Object.keys(config.commands[item].template).join(', ')
+Object.keys(config.commands).forEach(itemName => {
+    let item = config.commands[itemName]
+    let types = Object.keys(item.template).join(', ')
 
     program
-        .command(item)
+        .command(itemName)
         .description('Generate HTML')
         .option('-f, --filename <filename>', '文件名')
         .option('-t, --type <type>', '类型    [' + types + ']')
         .action(function(options){
-            genrate(item, options)
+            genrate(itemName, options)
         })
 })
 

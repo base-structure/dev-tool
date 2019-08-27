@@ -1,7 +1,8 @@
-var assert = require("assert");
+var chai = require('chai');
+var expect = chai.expect;
 
-describe('Test Name', function(){
-    it('should return true', function(){
-        assert.equal(true, 1 == '1');
+describe('test suite', function(){
+    it('test case', function(){
+        expect([]).to.be.empty;
     })
 });
