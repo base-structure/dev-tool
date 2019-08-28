@@ -2,7 +2,6 @@
 
 var path = require('path')
 var program = require('commander')
-var colors = require( 'colors')
 var genrate = require( '../lib/genrate')
 var config = require('../lib/config.js')
 
@@ -17,7 +16,7 @@ Object.keys(config.commands).forEach(itemName => {
 
     program
         .command(itemName)
-        .description('Generate HTML')
+        .description('Generate ' + itemName)
         .option('-f, --filename <filename>', '文件名')
         .option('-t, --type <type>', '类型    [' + types + ']')
         .action(function(options){

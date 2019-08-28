@@ -9,7 +9,7 @@
   },
   "bin": {
     "gen": "./bin/gen.js",
-    "gen-sh": "./bin/gen.sh"
+    "desc": "./bin/desc.js"
   },
   "keywords": [
     "read",
