@@ -1,8 +1,16 @@
-db.getCollection('collectionName').findAndModify({
-    query: {
-        "key": "value"
+db.getCollection('collection').update(
+    {
+        _id: ObjectId("")
     },
-    update: {
-        $inc: { data: -1 }
+    {
+        $unset: {
+            name: ""
+        },
+        $set: {
+            key: "val"
+        }
+    },
+    {
+        multi: false
     }
-})
+)
