@@ -15,7 +15,7 @@ npm unlink
 将desc目录复制到vscode插件目录下
 
 ```
-cp -r /usr/share/code/resources/app/extensions/
+cp -r ./desc /usr/share/code/resources/app/extensions/
 ```
 
 ## vscode配置
