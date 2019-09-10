@@ -17,11 +17,32 @@ program
         description.init(options)
     })
 
+
+program
+    .command('commit')
+    .description('commit description files')
+    .option('-e, --env <env>', 'env name')
+    .option('-p, --project <project>', 'project name')
+    .action(function(options){
+        description.commit(options)
+    })
+
 program
     .command('update')
-    .description('update desc files')
+    .description('update description files')
+    .option('-e, --env <env>', 'env name')
+    .option('-p, --project <project>', 'project name')
     .action(function(options){
         description.update(options)
+    })
+
+program
+    .command('push')
+    .description('push description files')
+    .option('-m, --message <message>', 'commit message')
+    .option('-b, --branch <branch>', 'commit branch')
+    .action(function(options){
+        description.push(options)
     })
 
 program.parse(process.argv)
