@@ -1,3 +1,4 @@
 module.exports = {
-    descfiles: '.descfiles'
+    descfiles: '.descfiles',
+    globalFile: 'global-descfile.json'
 }

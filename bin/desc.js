@@ -17,14 +17,24 @@ program
         description.init(options)
     })
 
-
 program
     .command('commit')
     .description('commit description files')
     .option('-e, --env <env>', 'env name')
     .option('-p, --project <project>', 'project name')
+    .option('-l, --link [type]', 'link desc files')
     .action(function(options){
         description.commit(options)
+    })
+
+program
+    .command('link')
+    .description('link description files')
+    .option('-e, --env <env>', 'env name')
+    .option('-p, --project <project>', 'project name')
+    .option('-r, --remove [type]', 'remove link desc files')
+    .action(function(options){
+        description.link(options)
     })
 
 program

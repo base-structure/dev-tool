@@ -3,6 +3,26 @@ const path = require("path");
 const fs = require("fs");
 const config = require("./config");
 
+function loadFile(targetFile, word) {
+    try {
+        let result = JSON.parse(fs.readFileSync(targetFile, "utf8"));
+        let desc = (result.descs || {})[word];
+        if (Object.prototype.toString.call(desc) === "[object Array]") {
+            return new vscode.Hover(desc.join("\n\n"));
+        } else if (Object.prototype.toString.call(desc) === "[object String]") {
+            return new vscode.Hover(desc);
+        } else if (Object.prototype.toString.call(desc) === "[object Object]") {
+            let result = [];
+            for (let item in desc) {
+                result.push([item, desc[item]].join(":"));
+            }
+            return new vscode.Hover(result.join("\n\n"));
+        }
+    } catch (err) {
+    }
+    return null;
+}
+
 /**
  * @param {*} document
  * @param {*} position
@@ -28,24 +48,14 @@ function provideHover(document, position, token) {
             let basename = path.basename(currentDescFile).toLowerCase().replace(/\./g, "-") + ".json";
             currentDescFile = path.resolve(dirname, basename);
 
-            if (!fs.existsSync(currentDescFile)) {
-                break;
+            let globalFile = path.resolve(descPath, config.globalFile);
+
+            if (loadFile(currentDescFile, word)) {
+                return loadFile(currentDescFile, word)
             }
-            try {
-                let result = JSON.parse(fs.readFileSync(currentDescFile, "utf8"));
-                let desc = (result.descs || {})[word];
-                if (Object.prototype.toString.call(desc) === "[object Array]") {
-                    return new vscode.Hover(desc.join("\n\n"));
-                } else if (Object.prototype.toString.call(desc) === "[object String]") {
-                    return new vscode.Hover(desc);
-                } else if (Object.prototype.toString.call(desc) === "[object Object]") {
-                    let result = [];
-                    for (let item in desc) {
-                        result.push([item, desc[item]].join(":"));
-                    }
-                    return new vscode.Hover(result.join("\n\n"));
-                }
-            } catch (err) {
+
+            if (loadFile(globalFile, word)) {
+                return loadFile(globalFile, word)
             }
         }
         current = parent;
