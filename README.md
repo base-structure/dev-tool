@@ -31,3 +31,13 @@ npm run init
 - 源代码路径下邮件 "jump to desc"
 - 在desc文件descs字段中添加注释的key-value对
 - 源代码鼠标hover到对应的key单词上，会提示value值
+
+
+## demo
+
+`desc/demo`
+
+
+![demo1](/desc/demo/image/demo-1.png)
+
+![demo2](/desc/demo/image/demo-2.png)
