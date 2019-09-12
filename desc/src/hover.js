@@ -11,12 +11,15 @@ function loadFile(targetFile, word) {
         if (utils.isString(desc)) {
             return new vscode.Hover(desc);
         } else if (utils.isArray(desc)) {
+            desc = desc.filter(item => {
+                return utils.isString(item)
+            })
             result = desc.join("\n\n")
             return new vscode.Hover(result);
         } else if (utils.isObject(desc)) {
             let result = "";
             try {
-                result = JSON.stringify(desc, null, 4);
+                result = JSON.stringify(desc, null, "\n");
             } catch {
                 let arr = [];
                 for (let item in desc) {
