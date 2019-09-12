@@ -2,20 +2,13 @@
 
 ## 本地安装
 
+- desc 命令
+- gen命令
+- vscode插件
+
 ```
 // 安装
-npm link
-
-// 移除
-npm unlink
-```
-
-## vocode插件
-
-将desc目录复制到vscode插件目录下
-
-```
-cp -r ./desc /usr/share/code/resources/app/extensions/
+npm run init
 ```
 
 ## vscode配置
@@ -31,7 +24,7 @@ cp -r ./desc /usr/share/code/resources/app/extensions/
 
 ## desc
 
-在项目路径下执行 `desc init`, `desc update` 生成及更新项目描述文件
+在项目路径下执行 `desc init` 生成及更新项目描述文件
 
 ## 使用
 

@@ -4,9 +4,9 @@ const fs = require("fs");
 const config = require("./config");
 
 /**
- * @param {*} document 
- * @param {*} position 
- * @param {*} token 
+ * @param {*} document
+ * @param {*} position
+ * @param {*} token
  */
 function provideDefinition(document, position, token) {
     const fileName    = document.fileName;
@@ -35,10 +35,36 @@ function provideDefinition(document, position, token) {
                 let result = JSON.parse(fs.readFileSync(currentDescFile, "utf8"));
                 let desc = (result.descs || {})[word];
                 if (desc) {
-                    return new vscode.Location(vscode.Uri.file(currentDescFile), new vscode.Position(0, 0));
+                    let index = result.indexOf('"' + desc + '"')
+                    let str = result.substring(0, index)
+                    let count = 0;
+                    str.replace(/\n/g, function (m, i) {
+                        count++;
+                    });
+                    return new vscode.Location(vscode.Uri.file(currentDescFile), new vscode.Position(5, 0));
                 }
             } catch (err) {
             }
+
+            let globalFile = path.resolve(descPath, config.globalFile);
+            if (!fs.existsSync(globalFile)) {
+                break;
+            }
+            try {
+                let result = JSON.parse(fs.readFileSync(globalFile, "utf8"));
+                let desc = (result.descs || {})[word];
+                if (desc) {
+                    let index = result.indexOf('"' + desc + '"')
+                    let str = result.substring(0, index)
+                    let count = 0;
+                    str.replace(/\n/g, function (m, i) {
+                        count++;
+                    });
+                    return new vscode.Location(vscode.Uri.file(globalFile), new vscode.Position(5, 0));
+                }
+            } catch (err) {
+            }
+
         }
         current = parent;
         parent = path.resolve(current, "../");

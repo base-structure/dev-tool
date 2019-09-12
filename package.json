@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive",
-    "test-tap": "mocha --recursive --reporter tap"
+    "test-tap": "mocha --recursive --reporter tap",
+    "init": "./bin/build/init.sh",
+    "remove": "./bin/build/remove.sh"
   },
   "bin": {
     "gen": "./bin/gen.js",

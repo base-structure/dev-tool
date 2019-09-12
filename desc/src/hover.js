@@ -2,21 +2,29 @@ const vscode = require("vscode");
 const path = require("path");
 const fs = require("fs");
 const config = require("./config");
+const utils = require("./utils");
 
 function loadFile(targetFile, word) {
     try {
         let result = JSON.parse(fs.readFileSync(targetFile, "utf8"));
         let desc = (result.descs || {})[word];
-        if (Object.prototype.toString.call(desc) === "[object Array]") {
-            return new vscode.Hover(desc.join("\n\n"));
-        } else if (Object.prototype.toString.call(desc) === "[object String]") {
+        if (utils.isString(desc)) {
             return new vscode.Hover(desc);
-        } else if (Object.prototype.toString.call(desc) === "[object Object]") {
-            let result = [];
-            for (let item in desc) {
-                result.push([item, desc[item]].join(":"));
+        } else if (utils.isArray(desc)) {
+            result = desc.join("\n\n")
+            return new vscode.Hover(result);
+        } else if (utils.isObject(desc)) {
+            let result = "";
+            try {
+                result = JSON.stringify(desc, null, 4);
+            } catch {
+                let arr = [];
+                for (let item in desc) {
+                    arr.push([item, desc[item]].join(":"));
+                }
+                result = arr.join("\n\n");
             }
-            return new vscode.Hover(result.join("\n\n"));
+            return new vscode.Hover(result);
         }
     } catch (err) {
     }
