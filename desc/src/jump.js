@@ -32,16 +32,27 @@ function provideDefinition(document, position, token) {
                 break;
             }
             try {
-                let result = JSON.parse(fs.readFileSync(currentDescFile, "utf8"));
+                let fileData = fs.readFileSync(currentDescFile, "utf8");
+                let result = JSON.parse(fileData);
                 let desc = (result.descs || {})[word];
+
                 if (desc) {
-                    let index = result.indexOf('"' + desc + '"')
-                    let str = result.substring(0, index)
-                    let count = 0;
-                    str.replace(/\n/g, function (m, i) {
-                        count++;
-                    });
-                    return new vscode.Location(vscode.Uri.file(currentDescFile), new vscode.Position(5, 0));
+                    fileData = fileData
+                    let exc = new RegExp('"' + word + '"');
+                    if(!exc.test(fileData)) {
+                        return new vscode.Location(vscode.Uri.file(currentDescFile), new vscode.Position(2, 0));
+                    }
+                    let dataArr = fileData.split(/\r?\n/);
+                    let line = 0;
+                    let index = 0;
+
+                    for (line = 0; line < dataArr.length; line++) {
+                        if (exc.test(dataArr[line])) {
+                            index = dataArr[line].indexOf(word)
+                            break;
+                        }
+                    }
+                    return new vscode.Location(vscode.Uri.file(currentDescFile), new vscode.Position(line, index));
                 }
             } catch (err) {
             }
@@ -51,20 +62,30 @@ function provideDefinition(document, position, token) {
                 break;
             }
             try {
-                let result = JSON.parse(fs.readFileSync(globalFile, "utf8"));
+                let fileData = fs.readFileSync(globalFile, "utf8");
+                let result = JSON.parse(fileData);
                 let desc = (result.descs || {})[word];
+
                 if (desc) {
-                    let index = result.indexOf('"' + desc + '"')
-                    let str = result.substring(0, index)
-                    let count = 0;
-                    str.replace(/\n/g, function (m, i) {
-                        count++;
-                    });
-                    return new vscode.Location(vscode.Uri.file(globalFile), new vscode.Position(5, 0));
+                    fileData = fileData
+                    let exc = new RegExp('"' + word + '"');
+                    if(!exc.test(fileData)) {
+                        return new vscode.Location(vscode.Uri.file(currentDescFile), new vscode.Position(2, 0));
+                    }
+                    let dataArr = fileData.split(/\r?\n/);
+                    let line = 0;
+                    let index = 0;
+
+                    for (line = 0; line < dataArr.length; line++) {
+                        if (exc.test(dataArr[line])) {
+                            index = dataArr[line].indexOf(word)
+                            break;
+                        }
+                    }
+                    return new vscode.Location(vscode.Uri.file(currentDescFile), new vscode.Position(line, index));
                 }
             } catch (err) {
             }
-
         }
         current = parent;
         parent = path.resolve(current, "../");
