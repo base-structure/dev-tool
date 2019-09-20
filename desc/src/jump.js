@@ -11,7 +11,7 @@ const config = require("./config");
 function provideDefinition(document, position, token) {
     const fileName    = document.fileName;
     const workDir     = path.dirname(fileName);
-    const word        = document.getText(document.getWordRangeAtPosition(position));
+    const word        = document.getText(document.getWordRangeAtPosition(position, /[a-zA-Z_][\-a-zA-Z0-9_]*/));
 
     let current = workDir;
     let parent = path.resolve(current, "../");
