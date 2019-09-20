@@ -4,4 +4,4 @@
 npm run init
 ```
 
-![跟](/images/gen-1.png)
+![gen](/images/gen-1.png)

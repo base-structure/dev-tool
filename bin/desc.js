@@ -3,7 +3,7 @@
 var path = require('path')
 var program = require('commander')
 var program = require('commander')
-var description = require( '../lib/description')
+var description = require( './src/description')
 
 var targetPath = process.cwd()
 

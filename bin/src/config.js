@@ -1,6 +1,6 @@
 var path = require('path')
 
-const templatePath = path.resolve(__dirname, '../template')
+const templatePath = path.resolve(__dirname, 'template')
 
 var moment = require('moment');
 

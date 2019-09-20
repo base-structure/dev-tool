@@ -2,8 +2,8 @@
 
 var path = require('path')
 var program = require('commander')
-var genrate = require( '../lib/genrate')
-var config = require('../lib/config.js')
+var genrate = require( './src/genrate')
+var config = require('./src/config.js')
 
 var targetPath = process.cwd()
 
