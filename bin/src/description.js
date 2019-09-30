@@ -60,8 +60,11 @@ function genDescFiles (descPath) {
                 ignore = true
             } else {
                 skip.forEach(item => {
-                    if(relativePath.match(item)) {
-                        ignore = true
+                    try {
+                        if(relativePath.match(item)) {
+                            ignore = true
+                        }
+                    } catch (err) {
                     }
                 })
             }
@@ -197,7 +200,8 @@ function commit(options) {
     let projs = getProjs(options)
 
     for (var proj in projs) {
-        let from = path.resolve(projs[proj], descfiles)
+        // let from = path.resolve(projs[proj], descfiles)
+        let from = path.resolve(projs[proj])
         let to = path.resolve(root, proj)
 
         try {
@@ -223,7 +227,8 @@ function link(options) {
     let projs = getProjs(options)
 
     for (var proj in projs) {
-        let from = path.resolve(projs[proj], descfiles)
+        // let from = path.resolve(projs[proj], descfiles)
+        let from = path.resolve(projs[proj])
         let to = path.resolve(root, proj)
         try {
             let link = fs.readlinkSync(from)
@@ -248,7 +253,8 @@ function update(options) {
     let projs = getProjs(options)
 
     for (var proj in projs) {
-        let from = path.resolve(projs[proj], descfiles)
+        // let from = path.resolve(projs[proj], descfiles)
+        let from = path.resolve(projs[proj])
         let to = path.resolve(root, proj)
 
         try {
