@@ -8,6 +8,7 @@ module.exports = {
             "jmelements-doc": "/home/yt00573/augmentum/jmelements/doc",
             "disneyrun-doc": "/home/yt00573/disney/run/doc",
             "front-end": "/home/yt00573/nick/front-end/h5/.descfiles",
+            "daily-doc": "/home/yt00573/nick/daily-doc",
         }
     }
 }

@@ -34,6 +34,20 @@ const commands = {
             }
         }
     },
+    tasks: {
+        ext: 'tasks',
+        template: {
+            default: 'todo/default.md'
+        },
+        data: {
+            default: () => {
+                var now = moment();
+                return {
+                    time: now.format('YYYY-MM-DD HH:mm:ss')
+                }
+            }
+        }
+    },
     testjs: {
         basePath: 'test/',
         ext: 'test.js',
