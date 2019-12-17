@@ -11,6 +11,21 @@ const commands = {
             default: 'html/default.html'
         }
     },
+    sh: {
+        ext: 'sh',
+        template: {
+            default: 'sh/default.sh'
+        },
+        cmd: 'chmod +x $f',
+        data: {
+            default: () => {
+                var now = moment();
+                return {
+                    time: now.format('YYYY-MM-DD HH:mm:ss')
+                }
+            }
+        }
+    },
     mongo: {
         ext: 'js',
         template: {

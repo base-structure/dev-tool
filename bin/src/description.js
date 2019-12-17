@@ -277,7 +277,7 @@ function update(options) {
 
 function push(options) {
     function run(strs) {
-        console.log('[exec]: cd ' + root)
+        // console.log('[exec]: cd ' + root)
         strs.forEach(item => {
             console.log('[exec]: ' + item)
             if(!execSync('cd ' + root + ' && ' + item)) {

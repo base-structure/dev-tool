@@ -5,7 +5,7 @@ var path = require('path')
 var template = require('art-template')
 var utils = require('./utils.js')
 var config = require('./config.js')
-
+var execSync = require('child_process').execSync
 const templatePath = config.templatePath
 
 
@@ -23,6 +23,7 @@ function genrate(command, options) {
     let item = config.commands[command]
     let templates = item.template
     let data = item.data && item.data[type] || {}
+    let cmd = item.cmd || ''
     if (data) {
         if (Object.prototype.toString.call(data) === '[object Function]') {
             data = data()
@@ -59,6 +60,11 @@ function genrate(command, options) {
                 return
             }
             console.log('[create file success]: ', fullPath)
+            if (cmd) {
+                cmd = cmd.replace('$f', fullPath);
+                console.log(cmd)
+                execSync(cmd);
+            }
         })
     })
 }
