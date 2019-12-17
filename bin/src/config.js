@@ -11,6 +11,20 @@ const commands = {
             default: 'html/default.html'
         }
     },
+    sql: {
+        ext: 'sql',
+        template: {
+            default: 'sql/default.sql'
+        },
+        data: {
+            default: () => {
+                var now = moment();
+                return {
+                    time: now.format('YYYY-MM-DD HH:mm:ss')
+                }
+            }
+        }
+    },
     sh: {
         ext: 'sh',
         template: {
