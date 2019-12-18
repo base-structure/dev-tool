@@ -196,13 +196,14 @@ function getProjs(options) {
 }
 
 function commit(options) {
+    let env = options.env || 'default'
     let root = descProject.root
     let projs = getProjs(options)
 
     for (var proj in projs) {
         // let from = path.resolve(projs[proj], descfiles)
         let from = path.resolve(projs[proj])
-        let to = path.resolve(root, proj)
+        let to = path.resolve(root, env, proj)
 
         try {
             fs.readlinkSync(from)
@@ -223,13 +224,14 @@ function commit(options) {
 }
 
 function link(options) {
+    let env = options.env || 'default'
     let root = descProject.root
     let projs = getProjs(options)
 
     for (var proj in projs) {
         // let from = path.resolve(projs[proj], descfiles)
         let from = path.resolve(projs[proj])
-        let to = path.resolve(root, proj)
+        let to = path.resolve(root, env, proj)
         try {
             let link = fs.readlinkSync(from)
             if (options.remove) {

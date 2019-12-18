@@ -17,6 +17,7 @@ program
         description.init(options)
     })
 
+// 配置文件中的项目路径复制到root路径下
 program
     .command('commit')
     .description('commit description files')
@@ -27,6 +28,7 @@ program
         description.commit(options)
     })
 
+// 删除源项目,从root下创建软链接
 program
     .command('link')
     .description('link description files')
@@ -46,6 +48,7 @@ program
         description.update(options)
     })
 
+// 提交代码到远程
 program
     .command('push')
     .description('push description files')
